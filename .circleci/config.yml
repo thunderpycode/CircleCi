@@ -2,23 +2,23 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: /tmp/artifacts
+    working_directory: ~/circleci-python
     docker:
       - image: "circleci/python:3.6.4"
     steps:
       - checkout
       - run: python3 main.py
   test:
-    working_directory: /
+    working_directory: ~/circleci-python
     docker:
       - image: "circleci/python:3.6.4"
     steps:
       - checkout
       - run: python3 main-test.py
   artifact:
-    working_directory: /tmp/artifacts
     docker:
       - image: "circleci/python:3.6.4"
+    working_directory: /tmp
     steps:
       - run:
           name: Creating Dummy Artifacts
@@ -31,7 +31,6 @@ jobs:
           destination: artifact-file
       - store_artifacts:
           path: /tmp/artifacts
-
 workflows:
   build_and_test:
     jobs:
