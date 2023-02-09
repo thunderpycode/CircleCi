@@ -7,9 +7,7 @@ jobs:
       - image: "circleci/python:3.6.4"
     steps:
       - checkout
-      - run: 
-          command: |
-            python3 main.py > /tmp/python-artifact;
+      - run: python3 main.py > /tmp/python-artifact;
 
       - store_artifacts:
           path: /tmp/python-artifact
