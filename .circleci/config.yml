@@ -9,14 +9,13 @@ jobs:
       - checkout
       - run: 
           command: |
-            python3 main.py > /tmp/art-1;
+            python3 main.py > /tmp/python-artifact;
             mkdir /tmp/artifacts;
-            python3 main.py > //tmp/artifacts/art-2;
+
       - store_artifacts:
-          path: /tmp/art-1
+          path: /tmp/python-artifact
           destination: artifact-file
-      - store_artifacts:
-          path: /tmp/artifacts
+
   test:
     working_directory: ~/circleci-python
     docker:
