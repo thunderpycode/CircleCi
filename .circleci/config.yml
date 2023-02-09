@@ -15,7 +15,6 @@ jobs:
     steps:
       - checkout
       - run: python3 main-test.py
-  
   artifact:
     working_directory: /tmp
     steps:
