@@ -2,17 +2,17 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: ~/circleci-python
+    working_directory: ~/tmp1
     docker:
       - image: "circleci/python:3.6.4"
     steps:
       - checkout
       - run: 
           command: |
-            mkdir /tmp/artifacts;
-            python3 main.py > /tmp/artifacts/artpy
+            mkdir /tmp1/artifacts;
+            python3 main.py > /tmp1/artifacts/artpy
       - store_artifacts:
-          path: /tmp/art-1
+          path: /tmp1/art-1
           destination: artifact-file
   test:
     working_directory: ~/circleci-python
