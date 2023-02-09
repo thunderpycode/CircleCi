@@ -7,7 +7,14 @@ jobs:
       - image: "circleci/python:3.6.4"
     steps:
       - checkout
-      - run: python3 main.py
+      - run: 
+          command: |
+            mkdir /tmp/artifacts;
+            python3 main.py
+            
+      - store_artifacts:
+          path: /tmp/art-1
+          destination: artifact-file
   test:
     working_directory: ~/circleci-python
     docker:
