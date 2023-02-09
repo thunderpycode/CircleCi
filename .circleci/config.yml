@@ -12,7 +12,7 @@ jobs:
             mkdir /tmp1/artifacts;
             python3 main.py > /tmp1/artifacts/artpy
       - store_artifacts:
-          path: /tmp1/art-1
+          path: /tmp1/artpy
           destination: artifact-file
   test:
     working_directory: ~/circleci-python
