@@ -2,21 +2,21 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: ~/circleci-python
+    working_directory: /tmp/artifacts
     docker:
       - image: "circleci/python:3.6.4"
     steps:
       - checkout
       - run: python3 main.py
   test:
-    working_directory: ~/circleci-python
+    working_directory: /
     docker:
       - image: "circleci/python:3.6.4"
     steps:
       - checkout
       - run: python3 main-test.py
   artifact:
-    working_directory: /tmp
+    working_directory: /tmp/artifacts
     docker:
       - image: "circleci/python:3.6.4"
     steps:
