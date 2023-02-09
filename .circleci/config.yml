@@ -17,6 +17,8 @@ jobs:
       - run: python3 main-test.py
   artifact:
     working_directory: /tmp
+    docker:
+      - image: "circleci/python:3.6.4"
     steps:
       - run:
           name: Creating Dummy Artifacts
