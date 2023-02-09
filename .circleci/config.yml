@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: ~/tmp1
+    working_directory: /tmp1
     docker:
       - image: "circleci/python:3.6.4"
     steps:
