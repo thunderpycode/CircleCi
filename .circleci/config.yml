@@ -21,11 +21,11 @@ jobs:
                 wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.0.0.1744-linux.zip
                 unzip sonar-scanner-cli-4.0.0.1744-linux.zip
                 rm sonar-scanner-cli-4.0.0.1744-linux.zip
-                mv sonar-scanner-4.0.0.1744-linux ./
+                mv sonar-scanner-4.0.0.1744-linux ~/tmp
       - run:
           name: Run Sonarqube scanner
           command: |
-            /.
+            ~/tmp
               -Dsonar.projectKey=thunderpycode_CircleCi
               -Dsonar.login=$SONAR_TOKEN
               -Dsonar.organization=thunderpycode
