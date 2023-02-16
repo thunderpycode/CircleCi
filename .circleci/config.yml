@@ -8,7 +8,7 @@ jobs:
       - image: "circleci/python:3.6.4"
     steps:
     - checkout
-    - variables:
+    - sonarcloud:
         sonar.organization: thunderpycode
         sonar.projectKey: thunderpycode_CircleCi
     - sonarcloud/scan
