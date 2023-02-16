@@ -11,6 +11,18 @@ jobs:
       projectKey: $projectKey
     steps:
       - checkout  
+      - restore_cache:
+          keys:
+            - sonar-scanner-4.0.0-v0.0.2
+      - run:
+          name: Install Sonarqube scanner
+          command: |
+            if test ! -d /tmp/sonar-scanner; then
+                wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.0.0.1744-linux.zip
+                unzip sonar-scanner-cli-4.0.0.1744-linux.zip
+                rm sonar-scanner-cli-4.0.0.1744-linux.zip
+                mv sonar-scanner-4.0.0.1744-linux /tmp/sonar-scanner
+            fi
       - run:
           name: Run Sonarqube scanner
           command: |
