@@ -7,10 +7,10 @@ jobs:
     docker:
       - image: "circleci/python:3.6.4"
     steps:
-      - checkout
-      - sonarcloud:
+     - sonarcloud:
           sonar.organization: thunderpycode
           sonar.projectKey: thunderpycode_CircleCi
+      - checkout  
       - sonarcloud/scan
   build:
     working_directory: ~/tmp
