@@ -11,7 +11,18 @@ jobs:
       projectKey: $projectKey
     steps:
       - checkout  
+      - run:
+          name: Run Sonarqube scanner
+          command: |
+            /tmp/sonar-scanner/bin/sonar-scanner \ 
+                -Dsonar.projectKey=thunderpycode_CircleCi
+                -Dsonar.login=$SONAR_TOKEN
+                -Dsonar.organization=thunderpycode
       - sonarcloud/scan
+      - save_cache:
+          key: sonar-scanner-4.0.0-v0.0.2
+          paths:
+            - /tmp/sonar-scanner
   build:
     working_directory: ~/tmp
     docker:
