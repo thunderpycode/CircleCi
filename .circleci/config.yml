@@ -1,39 +1,13 @@
 version: 2.1
 orbs:
-  sonarcloud: sonarsource/sonarcloud@1.0.3
+  sonarcloud: sonarsource/sonarcloud@1.1.0
 jobs:
   sonarbuild:
-    working_directory: ~/tmp
     docker:
       - image: "circleci/python:3.6.4"
-    environment:
-      organization: $organisation
-      projectKey: $projectKey
     steps:
       - checkout  
-      - restore_cache:
-          keys:
-            - sonar-scanner-4.0.0-v0.0.2
-      - run:
-          name: Install Sonarqube scanner
-          command: |
-            if test ! -d /tmp/sonar-scanner; then
-                wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.0.0.1744-linux.zip
-                unzip sonar-scanner-cli-4.0.0.1744-linux.zip
-                rm sonar-scanner-cli-4.0.0.1744-linux.zip
-                mv sonar-scanner-4.0.0.1744-linux ~/tmp
-      - run:
-          name: Run Sonarqube scanner
-          command: |
-            ~/tmp
-              -Dsonar.projectKey=thunderpycode_CircleCi
-              -Dsonar.login=$SONAR_TOKEN
-              -Dsonar.organization=thunderpycode
       - sonarcloud/scan
-      - save_cache:
-          key: sonar-scanner-4.0.0-v0.0.2
-          paths:
-            - /tmp/sonar-scanner
   build:
     working_directory: ~/tmp
     docker:
