@@ -1,6 +1,14 @@
 version: 2.1
-
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.3
 jobs:
+  sonarbuild:
+    working_directory: ~/tmp
+    docker:
+      - image: "circleci/python:3.6.4"
+    steps:
+    - checkout
+    - sonarcloud/scan
   build:
     working_directory: ~/tmp
     docker:
@@ -8,7 +16,6 @@ jobs:
     steps:
       - checkout
       - run: python3 main.py > /tmp/python-artifact;
-
       - store_artifacts:
           path: /tmp/python-artifact
           destination: artifact-file
@@ -24,6 +31,8 @@ jobs:
 workflows:
   build_and_test:
     jobs:
+      - sonarbuild:
+          context: sonarcloud
       - build
       - test:
           requires:
